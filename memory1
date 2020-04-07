@@ -1,0 +1,95 @@
+int myArray[30]={9, 3, 2, 4, 3, 2, 7, 8, 9, 11};
+int pause = 2000;
+int currentVal = 0;
+int tempVal = 0;
+int currentColor;
+Adafruit_NeoPixel strip1(1, LED_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip2(1, LED_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip3(1, LED_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip4(1, LED_PIN, NEO_GRB + NEO_KHZ800);
+void setup() {
+  // put your setup code here, to run once:
+  strip.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
+  strip.show();            // Turn OFF all pixels ASAP
+  strip.setBrightness(50); // Set BRIGHTNESS to about 1/5 (max = 255)
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+addone();
+showSequence();
+testSequence();
+}
+
+void addOne(){
+  currentColor=random(0,3);
+  switch (currentColor) {
+  case 0:
+    // red
+    myArray[currentVal] = 0;
+    break;
+  case 1:
+  myArray[currentVal] = 1;
+    // green
+    break;
+      case 2:
+      myArray[currentVal] = 2;
+    // blue
+    break;
+    case 3:
+    myArray[currentVal] = 3;
+    // yellow
+    break;
+} 
+//end of addOne
+}
+void showSequence(){
+  tempVal = 0;
+  while (tempVal < currentVal){
+    switch (tempVal) {
+  case 0:
+    // red
+  strip1.setPixelColor(0,255,0,0);
+  strip1.show();
+  delay(pause);
+  strip1.setPixelColor(0,0,0,0);
+  strip1.show();
+  delay(200);
+    break;
+  case 1:
+    // green
+  strip2.setPixelColor(0,0,255,0);
+  strip2.show();
+  delay(pause);
+  strip2.setPixelColor(0,0,0,0);
+  strip2.show();
+  delay(200);
+    break;
+      case 2:
+    // blue
+  strip3.setPixelColor(0,0,0,255);
+  strip3.show();
+  delay(pause);
+  strip3.setPixelColor(0,0,0,0);
+  strip3.show();
+  delay(200);
+    break;
+    case 3:
+  strip4.setPixelColor(0,0,255,255);
+  strip4.show();
+  delay(pause);
+  strip4.setPixelColor(0,0,0,0);
+  strip4.show();
+  delay(200);
+    break;
+}
+tempVal += 1;
+}
+//end of showSequence
+}
+void testSequence(){
+IN0 = digitalRead(redpin);
+IN1 = digitalRead(greenpin);
+IN2 = digitalRead(bluepin);
+IN3 = digitalRead(yellowpin);  
+}
